@@ -39,6 +39,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     </div>
 
   </div>
+
+  <span class="copyright">© SQUARE ENIX</span>
 </BaseLayout>
 
 <style>
@@ -221,6 +223,17 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
   .arrow { transition: transform 0.2s; }
   .back-link:hover .arrow { transform: translateX(-4px); }
+
+  .copyright {
+    position: fixed;
+    bottom: 1.25rem;
+    right: 1.5rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.1em;
+    color: var(--border);
+    z-index: 10;
+  }
 
   @media (max-width: 600px) {
     .portrait-wrap { display: none; }

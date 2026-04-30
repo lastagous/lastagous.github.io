@@ -72,6 +72,7 @@ const projects = [
 
       <footer class="site-footer">
         <nav class="socials" aria-label="SNS">
+
           <a href="https://x.com/lastagous" target="_blank" rel="noopener" aria-label="X (Twitter)" class="social-img-link">
             <img src="/logos/x-logo.svg" alt="X" class="social-img" width="18" height="18" />
           </a>
@@ -82,11 +83,12 @@ const projects = [
             <img src="/logos/note-icon.svg" alt="note" class="social-img" width="18" height="18" />
           </a>
         </nav>
-        <span class="copyright">© SQUARE ENIX</span>
       </footer>
 
     </div>
   </div>
+
+  <span class="copyright">© SQUARE ENIX</span>
 </BaseLayout>
 
 <style>
@@ -374,10 +376,14 @@ const projects = [
   }
 
   .copyright {
+    position: fixed;
+    bottom: 1.25rem;
+    right: 1.5rem;
     font-family: 'JetBrains Mono', monospace;
     font-size: 0.6rem;
     letter-spacing: 0.1em;
     color: var(--border);
+    z-index: 10;
   }
 
   /* ── Responsive ───────────────────────────────────── */
