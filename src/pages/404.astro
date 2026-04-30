@@ -6,16 +6,221 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   title="ページが見つかりません | lastagous.com"
   description="お探しのページは見つかりませんでした。"
 >
-  <div class="min-h-screen flex flex-col items-center justify-center px-4 text-center">
-    <p class="font-mono text-teal text-sm tracking-widest uppercase mb-4">404</p>
-    <h1 class="font-display text-3xl text-moon-light mb-3">ページが見つかりません</h1>
-    <p class="text-moon-dim text-sm mb-8">お探しのページは存在しないか、移動した可能性があります。</p>
-    <a
-      href="/"
-      class="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg border border-teal/30 bg-teal/10
-             text-teal font-mono text-sm hover:bg-teal/20 transition-colors"
-    >
-      ← トップへ戻る
-    </a>
+  <div class="top-bar"></div>
+
+  <div class="layout">
+
+    <div class="portrait-wrap" aria-hidden="true">
+      <img src="/profile.png" alt="" class="portrait-img" />
+      <div class="portrait-glow"></div>
+    </div>
+
+    <div class="content">
+      <header class="hero">
+        <h1 class="site-title">lastagous</h1>
+        <div class="divider">
+          <span class="dl"></span>
+          <span class="di">✦</span>
+          <span class="dl"></span>
+        </div>
+      </header>
+
+      <main class="body">
+        <p class="code">404</p>
+        <h2 class="heading">ページが見つかりません</h2>
+        <p class="desc">お探しのページは存在しないか、移動した可能性があります。</p>
+        <a href="/" class="back-link">
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" class="arrow">
+            <path d="M13 8H3M7 12l-4-4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span>トップへ戻る</span>
+        </a>
+      </main>
+    </div>
+
   </div>
 </BaseLayout>
+
+<style>
+  :root {
+    --bg:          #1c2e14;
+    --surface:     #253d1a;
+    --border:      #3a5828;
+    --text:        #f8f6f2;
+    --muted:       #ccc6b0;
+    --gold:        #f0c820;
+    --gold-bright: #ffd84a;
+    --gold-dim:    #a07800;
+    --green:       #5aaa30;
+  }
+
+  .top-bar {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg,
+      transparent 0%,
+      var(--green) 25%,
+      var(--gold) 60%,
+      transparent 100%
+    );
+    z-index: 100;
+  }
+
+  .layout {
+    min-height: 100vh;
+    display: flex;
+    align-items: stretch;
+    position: relative;
+    overflow: hidden;
+    background: var(--bg);
+  }
+
+  .portrait-wrap {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    width: 42vw;
+    max-width: 520px;
+    pointer-events: none;
+    z-index: 0;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    animation: portrait-rise 1.2s cubic-bezier(0.22, 1, 0.36, 1) 0.2s both;
+  }
+
+  @keyframes portrait-rise {
+    from { opacity: 0; transform: translateY(32px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .portrait-img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    object-position: bottom right;
+    opacity: 0.75;
+    mask-image: linear-gradient(
+      to right,
+      transparent 0%,
+      rgba(0,0,0,0.7) 20%,
+      rgba(0,0,0,1) 45%
+    );
+    -webkit-mask-image: linear-gradient(
+      to right,
+      transparent 0%,
+      rgba(0,0,0,0.7) 20%,
+      rgba(0,0,0,1) 45%
+    );
+  }
+
+  .portrait-glow {
+    position: absolute;
+    bottom: 0; right: 0;
+    width: 60%; height: 60%;
+    background: radial-gradient(ellipse at bottom right,
+      rgba(58,112,32,0.12) 0%,
+      transparent 70%
+    );
+    pointer-events: none;
+  }
+
+  .content {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 5rem 3rem 3rem 4rem;
+    max-width: 640px;
+    min-height: 100vh;
+  }
+
+  .hero { margin-bottom: 3.5rem; }
+
+  .site-title {
+    font-family: 'Cinzel', Georgia, serif;
+    font-size: clamp(2.4rem, 6vw, 4.5rem);
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: -0.01em;
+    color: var(--text);
+    margin-bottom: 0.8rem;
+  }
+
+  .divider {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    max-width: 200px;
+  }
+
+  .dl {
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  .di {
+    font-size: 0.55rem;
+    color: var(--gold-dim);
+  }
+
+  .body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    padding: 1.75rem 1.25rem;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .code {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.18em;
+    color: var(--gold-dim);
+  }
+
+  .heading {
+    font-family: 'Cinzel', Georgia, serif;
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--text);
+    line-height: 1.2;
+  }
+
+  .desc {
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 0.78rem;
+    line-height: 1.8;
+    color: var(--muted);
+  }
+
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.18em;
+    color: var(--muted);
+    text-decoration: none;
+    margin-top: 0.25rem;
+    transition: color 0.2s, gap 0.2s;
+  }
+
+  .back-link:hover {
+    color: var(--gold-bright);
+    gap: 0.65rem;
+  }
+
+  .arrow { transition: transform 0.2s; }
+  .back-link:hover .arrow { transform: translateX(-4px); }
+
+  @media (max-width: 600px) {
+    .portrait-wrap { display: none; }
+    .content { padding: 5rem 1.5rem 3rem; max-width: 100%; }
+  }
+</style>
