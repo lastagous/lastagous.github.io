@@ -1,0 +1,384 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const projects = [
+  {
+    href: 'https://lastagous.com/gerolt-selection/',
+    title: 'ゲロルトの工匠記録',
+    subtitle: 'Gerolt Selection',
+    description: 'FF14 レリック武器の作成進捗を管理するツール。武器・ジョブごとに達成済みの実績を確認できます。',
+    tag: 'TOOL',
+    accent: 'gold',
+  },
+  {
+    href: 'https://lastagous.com/crescent-isle/',
+    title: 'クレセントアイル',
+    subtitle: 'Crescent Isle',
+    description: 'FF14 クレセントアイルの総合攻略ガイド。サポートジョブ・装備・ストーリー・レベリングを網羅。',
+    tag: 'GUIDE',
+    accent: 'green',
+  },
+];
+---
+
+<BaseLayout
+  title="lastagous.com | FF14 攻略ツール・ガイド集"
+  description="FF14 の攻略ツールとガイドを公開しています。レリック武器進捗管理やクレセントアイル攻略などを提供。"
+>
+  <!-- Top accent line -->
+  <div class="top-bar"></div>
+
+  <div class="layout">
+
+    <!-- Gerolt portrait -->
+    <div class="portrait-wrap" aria-hidden="true">
+      <img src="/profile.png" alt="" class="portrait-img" />
+      <div class="portrait-glow"></div>
+    </div>
+
+    <!-- Content -->
+    <div class="content">
+
+      <header class="hero">
+        <h1 class="site-title">lastagous</h1>
+        <div class="divider">
+          <span class="dl"></span>
+          <span class="di">✦</span>
+          <span class="dl"></span>
+        </div>
+      </header>
+
+      <main class="projects">
+        {projects.map((p) => (
+          <a href={p.href} class={`row row-${p.accent}`}>
+            <div class="row-body">
+              <div class="row-head">
+                <div>
+                  <h2 class="row-title">{p.title}</h2>
+                  <p class="row-sub">{p.subtitle}</p>
+                </div>
+              </div>
+              <p class="row-desc">{p.description}</p>
+              <div class="row-cta">
+                <span>ENTER</span>
+                <svg width="14" height="14" viewBox="0 0 16 16" fill="none" class="arrow">
+                  <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+            </div>
+          </a>
+        ))}
+      </main>
+
+      <footer class="site-footer">
+        <nav class="socials" aria-label="SNS">
+          <a href="https://x.com/lastagous" target="_blank" rel="noopener" aria-label="X (Twitter)" class="social-img-link">
+            <img src="/logos/x-logo.svg" alt="X" class="social-img" width="18" height="18" />
+          </a>
+          <a href="https://www.youtube.com/@lastagous" target="_blank" rel="noopener" aria-label="YouTube" class="social-img-link">
+            <img src="/logos/yt-icon.png" alt="YouTube" class="social-img" width="26" height="18" />
+          </a>
+          <a href="https://note.com/lastagous" target="_blank" rel="noopener" aria-label="note" class="social-img-link">
+            <img src="/logos/note-icon.svg" alt="note" class="social-img" width="18" height="18" />
+          </a>
+        </nav>
+        <span class="copyright">© SQUARE ENIX</span>
+      </footer>
+
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  /* ── Palette ──────────────────────────────────────── */
+  :root {
+    --bg:          #1c2e14;
+    --surface:     #253d1a;
+    --border:      #3a5828;
+    --text:        #f8f6f2;
+    --muted:       #ccc6b0;
+    --gold:        #f0c820;
+    --gold-bright: #ffd84a;
+    --gold-dim:    #a07800;
+    --green:       #5aaa30;
+    --green-bright:#7ed050;
+    --green-dim:   #2e5a18;
+  }
+
+  /* ── Top bar ──────────────────────────────────────── */
+  .top-bar {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg,
+      transparent 0%,
+      var(--green) 25%,
+      var(--gold) 60%,
+      transparent 100%
+    );
+    z-index: 100;
+  }
+
+  /* ── Layout ───────────────────────────────────────── */
+  .layout {
+    min-height: 100vh;
+    display: flex;
+    align-items: stretch;
+    position: relative;
+    overflow: hidden;
+    background: var(--bg);
+  }
+
+  /* ── Portrait ─────────────────────────────────────── */
+  .portrait-wrap {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    width: 42vw;
+    max-width: 520px;
+    pointer-events: none;
+    z-index: 0;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+  }
+
+  .portrait-img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    object-position: bottom right;
+    opacity: 0.75;
+    mix-blend-mode: normal;
+    filter: none;
+    mask-image: linear-gradient(
+      to right,
+      transparent 0%,
+      rgba(0,0,0,0.7) 20%,
+      rgba(0,0,0,1) 45%
+    );
+    -webkit-mask-image: linear-gradient(
+      to right,
+      transparent 0%,
+      rgba(0,0,0,0.7) 20%,
+      rgba(0,0,0,1) 45%
+    );
+  }
+
+  @keyframes portrait-rise {
+    from {
+      opacity: 0;
+      transform: translateY(32px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .portrait-wrap {
+    animation: portrait-rise 1.2s cubic-bezier(0.22, 1, 0.36, 1) 0.2s both;
+  }
+
+  .portrait-glow {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 60%;
+    height: 60%;
+    background: radial-gradient(ellipse at bottom right,
+      rgba(58,112,32,0.12) 0%,
+      transparent 70%
+    );
+    pointer-events: none;
+  }
+
+  /* ── Content ──────────────────────────────────────── */
+  .content {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 5rem 3rem 3rem 4rem;
+    max-width: 640px;
+    min-height: 100vh;
+  }
+
+  /* ── Hero ─────────────────────────────────────────── */
+  .hero { margin-bottom: 3.5rem; }
+
+  .site-title {
+    font-family: 'Cinzel', Georgia, serif;
+    font-size: clamp(2.4rem, 6vw, 4.5rem);
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: -0.01em;
+    color: var(--text);
+    margin-bottom: 0.8rem;
+  }
+
+  .divider {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    max-width: 200px;
+  }
+
+  .dl {
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  .di {
+    font-size: 0.55rem;
+    color: var(--gold-dim);
+  }
+
+  /* ── Projects ─────────────────────────────────────── */
+  .projects {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .row {
+    display: flex;
+    align-items: stretch;
+    gap: 1.5rem;
+    padding: 1.75rem 1.25rem;
+    border-top: 1px solid var(--border);
+    text-decoration: none;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.2s;
+    border-radius: 2px;
+  }
+
+  .row:last-child { border-bottom: 1px solid var(--border); }
+
+  .row::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 2px;
+    transform: scaleY(0);
+    transform-origin: top;
+    transition: transform 0.28s ease;
+  }
+
+  .row-gold::before,
+  .row-green::before { background: var(--gold); }
+
+  .row:hover { background: rgba(255,255,255,0.015); }
+  .row:hover::before { transform: scaleY(1); }
+
+  /* Body */
+  .row-body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+  }
+
+  .row-head {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 0.75rem;
+  }
+
+  .row-title {
+    font-family: 'Cinzel', Georgia, serif;
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--text);
+    line-height: 1.2;
+    transition: color 0.2s;
+  }
+
+  .row-gold:hover .row-title,
+  .row-green:hover .row-title { color: var(--gold-bright); }
+
+  .row-sub {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    margin-top: 0.2rem;
+  }
+
+  .row-desc {
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 0.78rem;
+    line-height: 1.8;
+    color: var(--muted);
+  }
+
+  .row-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.18em;
+    margin-top: 0.25rem;
+    color: var(--muted);
+    transition: gap 0.2s;
+  }
+
+  .row:hover .row-cta { gap: 0.65rem; }
+
+  .arrow { transition: transform 0.2s; }
+  .row:hover .arrow { transform: translateX(4px); }
+
+  /* ── Footer ───────────────────────────────────────── */
+  .site-footer {
+    margin-top: 3rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .socials {
+    display: flex;
+    gap: 1.25rem;
+    align-items: center;
+  }
+
+  .socials a {
+    color: var(--muted);
+    display: flex;
+    transition: color 0.2s, transform 0.2s;
+  }
+
+  .socials a:hover {
+    color: var(--gold);
+    transform: translateY(-2px);
+  }
+
+  .social-img {
+    opacity: 0.6;
+    transition: opacity 0.2s;
+    display: block;
+  }
+
+  .social-img-link:hover .social-img {
+    opacity: 1;
+  }
+
+  .copyright {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.1em;
+    color: var(--border);
+  }
+
+  /* ── Responsive ───────────────────────────────────── */
+  @media (max-width: 600px) {
+    .portrait-wrap { display: none; }
+    .content { padding: 5rem 1.5rem 3rem; max-width: 100%; }
+    .row { gap: 1rem; padding: 1.5rem 0.75rem; }
+  }
+</style>

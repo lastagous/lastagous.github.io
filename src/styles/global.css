@@ -1,0 +1,48 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Noto+Sans+JP:wght@300;400;500;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-bg:      #0a0f1e;
+    --color-surface: #111828;
+    --color-border:  #1e3050;
+    --color-text:    #c8d8f0;
+    --color-muted:   #6b8aad;
+    --color-accent:  #2dd4bf;
+    --color-gold:    #fbbf24;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    @apply bg-night text-moon font-body antialiased;
+    background-image:
+      radial-gradient(ellipse 60% 30% at 70% 10%, rgba(45,212,191,0.04) 0%, transparent 60%),
+      radial-gradient(ellipse 80% 40% at 20% 80%, rgba(251,191,36,0.03) 0%, transparent 60%);
+    min-height: 100vh;
+  }
+
+  h1, h2, h3, h4 { @apply font-display; }
+
+  a { @apply transition-colors duration-200; }
+
+  ::selection { @apply bg-teal/30 text-moon-light; }
+
+  * { scrollbar-width: thin; scrollbar-color: #3a5828 #1c2e14; }
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: #1c2e14; }
+  ::-webkit-scrollbar-thumb { background: #3a5828; border-radius: 9999px; }
+  ::-webkit-scrollbar-thumb:hover { background: #a07800; }
+}
+
+@layer components {
+  .project-card {
+    @apply relative bg-night-100 border border-[var(--color-border)] rounded-2xl p-6
+           shadow-moon-glow backdrop-blur-sm
+           transition-all duration-300
+           hover:border-teal/40 hover:shadow-teal-glow hover:-translate-y-1;
+  }
+}

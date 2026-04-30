@@ -1,0 +1,21 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="ページが見つかりません | lastagous.com"
+  description="お探しのページは見つかりませんでした。"
+>
+  <div class="min-h-screen flex flex-col items-center justify-center px-4 text-center">
+    <p class="font-mono text-teal text-sm tracking-widest uppercase mb-4">404</p>
+    <h1 class="font-display text-3xl text-moon-light mb-3">ページが見つかりません</h1>
+    <p class="text-moon-dim text-sm mb-8">お探しのページは存在しないか、移動した可能性があります。</p>
+    <a
+      href="/"
+      class="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg border border-teal/30 bg-teal/10
+             text-teal font-mono text-sm hover:bg-teal/20 transition-colors"
+    >
+      ← トップへ戻る
+    </a>
+  </div>
+</BaseLayout>
