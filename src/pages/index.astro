@@ -9,6 +9,7 @@ const projects = [
     description: 'FF14 レリック武器の作成進捗を管理するツール。武器・ジョブごとに達成済みの実績を確認できます。',
     tag: 'TOOL',
     accent: 'gold',
+    copyright: '© SQUARE ENIX',
   },
   {
     href: 'https://lastagous.com/crescent-isle/',
@@ -17,6 +18,7 @@ const projects = [
     description: 'FF14 クレセントアイルの総合攻略ガイド。サポートジョブ・装備・ストーリー・レベリングを網羅。',
     tag: 'GUIDE',
     accent: 'green',
+    copyright: '© SQUARE ENIX',
   },
 ];
 ---
@@ -66,9 +68,9 @@ const projects = [
                 </svg>
               </div>
             </div>
+            {p.copyright && <span class="row-copyright">{p.copyright}</span>}
           </a>
         ))}
-        <span class="copyright">© SQUARE ENIX</span>
       </main>
 
       <footer class="site-footer">
@@ -375,13 +377,15 @@ const projects = [
     opacity: 1;
   }
 
-  .copyright {
-    align-self: flex-end;
-    margin-top: 0.5rem;
+  .row-copyright {
+    position: absolute;
+    bottom: 0.6rem;
+    right: 1.25rem;
     font-family: 'JetBrains Mono', monospace;
-    font-size: 0.6rem;
-    letter-spacing: 0.1em;
+    font-size: 0.55rem;
+    letter-spacing: 0.08em;
     color: var(--border);
+    pointer-events: none;
   }
 
   /* ── Responsive ───────────────────────────────────── */
